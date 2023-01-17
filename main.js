@@ -23,3 +23,22 @@ function model_Loaded(){
     console.log("Model is loaded");
 }
 
+function identify()
+{
+    my_picture = document.getElementById("picture");
+    classifier.classify(my_picture, got_result);
+
+}
+
+function got_result(error, results)
+{
+   if (error){
+        console.error(error);
+   }
+   else{
+        console.log(results);
+        document.getElementById("result_object_name").innerHTML = results[0].label;
+        accuracy = ((results[0].confidence)*100).toFixed(2);
+        document.getElementById("result_object_accuracy").innerHTML = accuracy+"%";
+   }
+}
